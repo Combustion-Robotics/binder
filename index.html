@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'">
+  <title>Binder</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <aside class="side">
+    <div class="brand"><span class="mark"></span>Binder</div>
+    <select id="year" aria-label="School year"></select>
+    <nav>
+      <button data-go="home">Home</button>
+      <button data-go="inbox">Inbox <span id="badge" class="badge" hidden></span></button>
+      <button data-go="homework">Homework</button>
+      <button data-go="notes">Notes</button>
+      <button data-act="ebooks" title="Opens your Digi4School Offline library in your browser">E-books <span class="hint">digi4school</span></button>
+    </nav>
+    <div class="side-label">Subjects</div>
+    <nav id="subjects"></nav>
+    <button class="add-subject" data-act="addSubject">+ Add subject</button>
+  </aside>
+
+  <main>
+    <header class="top">
+      <input id="q" type="search" placeholder="Search files, or #tag" aria-label="Search">
+      <label class="all-years"><input type="checkbox" id="allYears"> All years</label>
+      <button id="themeBtn" class="theme-btn" data-act="theme">Light mode</button>
+    </header>
+    <section id="view"></section>
+  </main>
+
+  <div id="pop" class="pop" hidden></div>
+  <div id="toast" class="toast"></div>
+  <dialog id="ask">
+    <form method="dialog">
+      <label id="askLabel" for="askInput"></label>
+      <input id="askInput">
+      <div class="row">
+        <button type="button" data-close="cancel" class="ghost">Cancel</button>
+        <button class="primary">Save</button>
+      </div>
+    </form>
+  </dialog>
+  <dialog id="subjDlg">
+    <form method="dialog">
+      <h3 id="subjTitle"></h3>
+      <label for="subjName">Name</label>
+      <input id="subjName" required autocomplete="off">
+      <span class="lbl">Colour</span>
+      <div class="swatch-row">
+        <div id="swatches"></div>
+        <input type="color" id="subjColor" aria-label="Custom colour" title="Pick any colour">
+      </div>
+      <div class="row">
+        <button type="button" data-close="delete" class="danger">Delete subject</button>
+        <span class="grow"></span>
+        <button type="button" data-close="cancel" class="ghost">Cancel</button>
+        <button class="primary">Save</button>
+      </div>
+    </form>
+  </dialog>
+  <dialog id="newDlg">
+    <form method="dialog">
+      <h3 id="newTitle"></h3>
+      <div class="kinds" role="radiogroup" aria-label="File type">
+        <label class="kind"><input type="radio" name="kind" value="docx" checked><span class="ext doc">docx</span>Word</label>
+        <label class="kind"><input type="radio" name="kind" value="pptx"><span class="ext ppt">pptx</span>PowerPoint</label>
+        <label class="kind"><input type="radio" name="kind" value="xlsx"><span class="ext xls">xlsx</span>Excel</label>
+      </div>
+      <label for="newName">Name</label>
+      <input id="newName" required autocomplete="off">
+      <label for="newFolder">Folder</label>
+      <select id="newFolder"></select>
+      <div class="row">
+        <button type="button" data-close="cancel" class="ghost">Cancel</button>
+        <button class="primary">Create and open</button>
+      </div>
+    </form>
+  </dialog>
+  <script src="app.js"></script>
+</body>
+</html>

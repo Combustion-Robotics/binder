@@ -1,0 +1,17 @@
+{
+  "name": "binder",
+  "productName": "Binder",
+  "version": "1.0.0",
+  "description": "A desktop app for organising school files on Windows: auto-sorts downloads into subjects, plus homework planner and sticky notes.",
+  "author": "Combustion-Robotics",
+  "license": "PolyForm-Noncommercial-1.0.0",
+  "repository": "github:Combustion-Robotics/binder",
+  "private": true,
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^44.6.0"
+  }
+}
