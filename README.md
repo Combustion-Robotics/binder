@@ -49,7 +49,7 @@ For things that don't belong in a folder: reminders, ideas, the date of the next
 - **Search** across one school year or all of them (`Ctrl+F`), including `#tag` search.
 - **School years**: every year gets its own folder (for example `8A_2026-2027`). Older years stay browsable as an archive.
 - **Light and dark mode.**
-- **E-books**: opens your [Digi4School Offline](https://github.com/Combustion-Robotics/digi4school-downloader) library, if you use it in Brave, Chrome or Edge.
+- **E-books**: opens your [Digi4School Offline](https://github.com/Combustion-Robotics/digi4school-downloader) (private for now) library, if you use it in Brave, Chrome or Edge.
 
 <p>
   <img src="docs/light.png" width="49%" alt="Light mode">
