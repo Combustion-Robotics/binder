@@ -345,7 +345,8 @@ for (const [k, f] of Object.entries(handlers)) ipcMain.handle(k, (_e, ...a) => f
 
 // ---------- app ----------
 function shortcuts() {
-  if (process.env.NO_SHORTCUT || process.env.BINDER_HOME) return;
+  // only when run from source on Windows; installed builds get their shortcuts from the installer
+  if (process.platform !== 'win32' || app.isPackaged || process.env.NO_SHORTCUT || process.env.BINDER_HOME) return;
   const opts = {
     target: process.execPath, args: `"${app.getAppPath()}"`, cwd: app.getAppPath(),
     icon: path.join(__dirname, 'icon.ico'), iconIndex: 0, description: 'Binder',
@@ -370,7 +371,7 @@ app.whenReady().then(() => {
   shortcuts();
   win = new BrowserWindow({
     width: 1280, height: 820, minWidth: 960, minHeight: 600,
-    title: 'Binder', icon: path.join(__dirname, 'icon.ico'), backgroundColor: (THEMES[data.theme] || THEMES.dark).color,
+    title: 'Binder', icon: path.join(__dirname, process.platform === 'win32' ? 'icon.ico' : 'docs/icon.png'), backgroundColor: (THEMES[data.theme] || THEMES.dark).color,
     titleBarStyle: 'hidden', titleBarOverlay: { ...(THEMES[data.theme] || THEMES.dark), height: 44 },
     webPreferences: { preload: path.join(__dirname, 'preload.js') },
   });

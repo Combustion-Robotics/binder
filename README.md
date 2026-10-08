@@ -56,9 +56,22 @@ For things that don't belong in a folder: reminders, ideas, the date of the next
   <img src="docs/newfile.png" width="49%" alt="Create a new Word, PowerPoint or Excel file">
 </p>
 
-## Install
+## Download
 
-Binder runs on **Windows 10/11** and needs [Node.js](https://nodejs.org) 18 or newer.
+Get the latest version from **[Releases](https://github.com/Combustion-Robotics/binder/releases/latest)**:
+
+| System | File |
+|---|---|
+| Windows (most PCs) | `Binder-…-win-x64.exe` |
+| Windows on ARM | `Binder-…-win-arm64.exe` |
+| Linux, any distribution | `Binder-…-linux-x86_64.AppImage` / `…-arm64.AppImage` |
+| Debian / Ubuntu / Mint | `Binder-…-linux-amd64.deb` / `…-arm64.deb` |
+
+The Windows installer isn't code-signed, so SmartScreen may warn you: click **More info → Run anyway**. Binder is made for Windows. The Linux builds are new: **New file** creates an empty document there (Office templates are Windows-only), and the E-books button only finds Digi4School Offline on Windows.
+
+## Run from source
+
+You need [Node.js](https://nodejs.org) 18 or newer.
 
 ```bash
 git clone https://github.com/Combustion-Robotics/binder.git
@@ -67,20 +80,23 @@ npm install
 npm start
 ```
 
-On first start, Binder:
+On Windows this also puts a **Binder** shortcut on your desktop and in the Start menu, so you don't need the terminal again. Keep the cloned folder where it is: the shortcuts point to it.
+
+To build the installers yourself: `npm run dist:win` (on Windows) or `npm run dist:linux` (on Linux). Pushing a tag like `v1.0.1` builds both on GitHub Actions and publishes a release.
+
+## First start
+
+Binder:
 
 - creates a folder for the current school year in your Documents. If last year's folder exists (for example `7A_2025-2026`), the new one is named after it (`8A_2026-2027`) and gets the same subjects.
-- puts a **Binder** shortcut on your desktop and in the Start menu, so you don't need the terminal again.
 - offers the downloads from the last 7 days in the Inbox.
-
-Keep the cloned folder where it is: the shortcuts point to it.
 
 ## Where your data is
 
 | What | Where |
 |---|---|
 | Your files | `Documents\<year>\<subject>\<type>`: normal folders you can also use in Explorer |
-| Homework, notes, pins, tags, colours, settings | `%APPDATA%\Binder\data.json` |
+| Homework, notes, pins, tags, colours, settings | `%APPDATA%\Binder\data.json` (Linux: `~/.config/Binder/data.json`) |
 
 Binder never uploads anything. Deleting a subject moves its folder to the Recycle Bin.
 

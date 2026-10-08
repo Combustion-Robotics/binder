@@ -2,16 +2,59 @@
   "name": "binder",
   "productName": "Binder",
   "version": "1.0.0",
-  "description": "A desktop app for organising school files on Windows: auto-sorts downloads into subjects, plus homework planner and sticky notes.",
-  "author": "Combustion-Robotics",
+  "description": "A desktop app for organising school files: auto-sorts downloads into subjects, plus homework planner and sticky notes.",
+  "author": {
+    "name": "Combustion-Robotics",
+    "email": "101283813+Combustion-Robotics@users.noreply.github.com"
+  },
+  "homepage": "https://github.com/Combustion-Robotics/binder",
   "license": "PolyForm-Noncommercial-1.0.0",
   "repository": "github:Combustion-Robotics/binder",
   "private": true,
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "dist:win": "electron-builder --win --x64 --publish never && electron-builder --win --arm64 --publish never",
+    "dist:linux": "electron-builder --linux --x64 --arm64 --publish never"
   },
   "devDependencies": {
-    "electron": "^44.6.0"
+    "electron": "^44.6.0",
+    "electron-builder": "^26.15.3"
+  },
+  "build": {
+    "appId": "io.github.combustion-robotics.binder",
+    "productName": "Binder",
+    "copyright": "Copyright (c) 2026 Combustion-Robotics",
+    "artifactName": "Binder-${version}-${os}-${arch}.${ext}",
+    "files": [
+      "main.js",
+      "preload.js",
+      "index.html",
+      "app.js",
+      "app.css",
+      "icon.ico",
+      "docs/icon.png",
+      "LICENSE.md"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "license": "LICENSE.md",
+      "shortcutName": "Binder"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "icon": "docs/icon.png",
+      "category": "Office",
+      "synopsis": "Keeps your school files in order"
+    }
   }
 }
